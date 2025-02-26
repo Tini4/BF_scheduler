@@ -9,13 +9,6 @@ from requests import Session
 
 CACHE_FILE: str = 'cache.pkl'
 SCHEDULE_URL: str = 'https://urniki.bf.uni-lj.si'
-# SUBJECTS: dict[str, str] = {
-#     'BIUN-1': '53', 'BIUN-2': '54', 'BIUN-3': '55',
-#     'BTUN-1': '50', 'BTUN-2': '51', 'BTUN-3': '52',
-#     'GOUN-1': '47', 'GOUN-2': '48', 'GOUN-3': '49',
-#     'AGUN-1': '44', 'AGUN-2': '45', 'AGUN-3': '46',
-#     'ZOUN-1': '41', 'ZOUN-2': '42', 'ZOUN-3': '43',
-# }
 
 
 def load_cache() -> dict[str, BeautifulSoup]:
@@ -61,11 +54,12 @@ def get_query(day: str) -> str:
 
 def get_soup_url(url: str, use_cache: bool = True) -> BeautifulSoup:
     cache = load_cache()
+    url_print = f'{urlparse(url).netloc}{urlparse(url).path}'
 
     if use_cache and url in cache:
-        print(f'cached: {urlparse(url).path} ({url})\n')
+        print(f'cached: {url_print} ({url})\n')
     else:
-        print(f'retrieving: {urlparse(url).path} ({url})\n')
+        print(f'retrieving: {url_print} ({url})\n')
 
         session = Session()
         page = session.get(url)

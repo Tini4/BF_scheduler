@@ -24,3 +24,16 @@ document.addEventListener('keydown', function (event) {
         }
     }
 });
+
+// Listen for Ctrl+O (Order)
+document.addEventListener('keydown', function (event) {
+    if (event.ctrlKey && event.key === 'o') {
+        event.preventDefault();
+
+        document.querySelectorAll('div.entry-absolute-box').forEach(entry => {
+            entry.classList.add('leftmost', 'rightmost');
+            entry.style.left = Math.floor(parseFloat(entry.style.left) / 20) * 20 + "%";
+            entry.style.width = "20%";
+        });
+    }
+});
