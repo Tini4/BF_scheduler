@@ -1,9 +1,9 @@
 let deleted = [];
 
-// Listen for clicks on grid entries
-document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll('div.entry-absolute-box').forEach(entry => {
-        entry.addEventListener('click', event => {
+// Listen for clicks on entries
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('div.entry-absolute-box').forEach((entry) => {
+        entry.addEventListener('click', (event) => {
             const div = event.currentTarget;
 
             deleted.push(div);
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Listen for Ctrl+Z (Undo)
-document.addEventListener('keydown', function (event) {
+document.addEventListener('keydown', (event) => {
     if (event.ctrlKey && event.key === 'z') {
         event.preventDefault();
 
@@ -32,8 +32,8 @@ document.addEventListener('keydown', function (event) {
 
         document.querySelectorAll('div.entry-absolute-box').forEach(entry => {
             entry.classList.add('leftmost', 'rightmost');
-            entry.style.left = Math.floor(parseFloat(entry.style.left) / 20) * 20 + "%";
-            entry.style.width = "20%";
+            entry.style.left = Math.floor(parseFloat(entry.style.left) / 20) * 20 + '%';
+            entry.style.width = '20%';
         });
     }
 });
